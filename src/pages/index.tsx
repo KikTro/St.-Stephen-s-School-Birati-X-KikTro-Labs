@@ -15,14 +15,13 @@ interface AppUserProfile {
   skills: string[];
   onboarded: boolean;
 }
-
 export default function Home() {
   const [firebaseUser, setFirebaseUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<AppUserProfile | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
-
-  // Monitor Firebase Auth State
+  const [logo1Error, setLogo1Error] = useState(false);
+  const [logo2Error, setLogo2Error] = useState(false);  // Monitor Firebase Auth State
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setAuthLoading(true);
@@ -141,12 +140,21 @@ export default function Home() {
         <div className="flex flex-col items-center mb-8">
           <div className="flex items-center justify-center gap-6 w-full mb-4">
 
-            {/* St. Stephen's School Placeholders (Left Logo) */}
+            {/* St. Stephen's School Logo (Left Logo) */}
             <div className="flex flex-col items-center flex-1 text-center">
-              <div className="w-16 h-16 bg-[#1a1a1a] border border-white/20 hover:border-white transition-all duration-300 flex items-center justify-center shadow-lg group">
-                <svg className="w-8 h-8 text-white group-hover:text-neonLime transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+              <div className="w-16 h-16 bg-[#1a1a1a] border border-white/20 hover:border-white transition-all duration-300 flex items-center justify-center shadow-lg group overflow-hidden">
+                {!logo1Error ? (
+                  <img
+                    src="/logos/logo1.png"
+                    alt="St. Stephen's School"
+                    onError={() => setLogo1Error(true)}
+                    className="w-full h-full object-contain p-1"
+                  />
+                ) : (
+                  <svg className="w-8 h-8 text-white group-hover:text-neonLime transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
               </div>
             </div>
 
@@ -155,14 +163,23 @@ export default function Home() {
               X
             </div>
 
-            {/* KikTro Labs Placeholders (Right Logo) */}
+            {/* KikTro Labs Logo (Right Logo) */}
             <div className="flex flex-col items-center flex-1 text-center">
-              <div className="w-16 h-16 bg-[#1a1a1a] border border-white/20 hover:border-neonLime transition-all duration-300 flex items-center justify-center shadow-lg group">
-                <svg className="w-9 h-9 text-neonLime group-hover:text-white transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                  <line x1="12" y1="22.08" x2="12" y2="12" />
-                </svg>
+              <div className="w-16 h-16 bg-[#1a1a1a] border border-white/20 hover:border-neonLime transition-all duration-300 flex items-center justify-center shadow-lg group overflow-hidden">
+                {!logo2Error ? (
+                  <img
+                    src="/logos/logo2.png"
+                    alt="KikTro Labs"
+                    onError={() => setLogo2Error(true)}
+                    className="w-full h-full object-contain p-1"
+                  />
+                ) : (
+                  <svg className="w-9 h-9 text-neonLime group-hover:text-white transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                    <line x1="12" y1="22.08" x2="12" y2="12" />
+                  </svg>
+                )}
               </div>
             </div>
 
