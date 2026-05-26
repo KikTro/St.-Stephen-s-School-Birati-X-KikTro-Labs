@@ -145,7 +145,7 @@ export default function Home() {
               <div className="w-16 h-16 bg-[#1a1a1a] border border-white/20 hover:border-white transition-all duration-300 flex items-center justify-center shadow-lg group overflow-hidden">
                 {!logo1Error ? (
                   <img
-                    src="/logos/logo1.png"
+                    src="/logos/logo1.webp"
                     alt="St. Stephen's School"
                     onError={() => setLogo1Error(true)}
                     className="w-full h-full object-contain p-1"
