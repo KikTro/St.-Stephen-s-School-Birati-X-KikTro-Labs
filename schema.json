@@ -1,0 +1,70 @@
+{
+  "users": {
+    "description": "Represents exclusive authenticated students from St. Stephen's School & KikTro Labs.",
+    "documentId": "uid (Firebase Auth standard)",
+    "fields": {
+      "uid": { "type": "string", "description": "Google Auth matching user UID." },
+      "name": { "type": "string", "description": "Full name entered during onboarding." },
+      "email": { "type": "string", "description": "Student email from Google account." },
+      "photoURL": { "type": "string", "description": "Direct Google profile photo link." },
+      "class": { "type": "string", "description": "Academic grade/section e.g., XI-A." },
+      "rollNumber": { "type": "string", "description": "Assigned class roll number." },
+      "skills": { "type": "array of strings", "description": "Competency tags selected (e.g. CAD, Python)." },
+      "onboarded": { "type": "boolean", "description": "True if user profile has been successfully filled." },
+      "createdAt": { "type": "timestamp", "description": "System date of user onboarding." }
+    }
+  },
+  "posts": {
+    "description": "Represents pitches/concepts (Ideas) and completed project logs (Projects).",
+    "documentId": "postId (auto-generated alphanumeric string)",
+    "fields": {
+      "id": { "type": "string", "description": "Identifier of the post." },
+      "type": { "type": "string", "description": "Type of log entry: 'idea' or 'project'." },
+      "author": {
+        "type": "map",
+        "fields": {
+          "uid": { "type": "string" },
+          "name": { "type": "string" },
+          "photoURL": { "type": "string" },
+          "class": { "type": "string" }
+        }
+      },
+      "content": { "type": "string", "description": "Main post description, supports markdown and code block pasting." },
+      "categoryTags": { "type": "array of strings", "description": "Clickable tags to organize under AI, Robotics, ML, etc." },
+      "lookingForTeam": { "type": "boolean", "description": "Optional (Ideas only): True if student is seeking teammates." },
+      "media": {
+        "type": "array of maps",
+        "description": "Firebase Storage hosted media files. Supports images and videos up to 150MB.",
+        "elementFields": {
+          "url": { "type": "string", "description": "Firebase Storage secure download URL." },
+          "type": { "type": "string", "description": "'image' or 'video'" },
+          "name": { "type": "string", "description": "Original file name." }
+        }
+      },
+      "heartedBy": { "type": "array of strings", "description": "UIDs of users who hearted the post." },
+      "upvotedBy": { "type": "array of strings", "description": "UIDs of users who upvoted the post." },
+      "downvotedBy": { "type": "array of strings", "description": "UIDs of users who downvoted the post." },
+      "createdAt": { "type": "timestamp", "description": "System date of post submission." }
+    },
+    "subcollections": {
+      "comments": {
+        "description": "Threaded feedbacks and discussions for a post.",
+        "documentId": "commentId (auto-generated alphanumeric string)",
+        "fields": {
+          "id": { "type": "string" },
+          "parentId": { "type": "string | null", "description": "Points to parent commentId if this is a reply." },
+          "author": {
+            "type": "map",
+            "fields": {
+              "uid": { "type": "string" },
+              "name": { "type": "string" },
+              "photoURL": { "type": "string" }
+            }
+          },
+          "content": { "type": "string", "description": "Content of comment." },
+          "createdAt": { "type": "timestamp" }
+        }
+      }
+    }
+  }
+}
