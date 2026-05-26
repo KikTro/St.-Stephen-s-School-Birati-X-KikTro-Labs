@@ -292,7 +292,7 @@ export default function Feed({ currentUser, onSignOut }: FeedProps) {
           <footer className="glass-panel p-5 md:p-6 border border-white/10 mt-8 space-y-4 text-center font-mono select-none">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] md:text-xs text-gray-500 uppercase tracking-widest">
               <span className="font-bold tracking-wide">// ST. STEPHEN'S SCHOOL, BIRATI × KIKTRO LABS</span>
-              <span className="text-[9px] md:text-[10px]">MAKERS ENGINE v2.0 // © 2026</span>
+              <span className="text-[9px] md:text-[10px]">BUILT BY KRISHNENDU HALDER @KIKTRO // © 2026</span>
             </div>
             <div className="flex flex-wrap justify-center items-center gap-4 text-[9px] md:text-[10px] text-gray-600 uppercase border-t border-white/5 pt-4">
               <div className="flex items-center gap-1.5">
